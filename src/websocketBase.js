@@ -16,10 +16,9 @@ class WebsocketBase extends APIBase {
   }
 
   initConnect (url) {
-    const httpsAgent = this.options.httpsAgent;
     let ws;
-    if (httpsAgent) {
-      ws = new WebSocketClient(url, { agent: httpsAgent })
+    if (this.httpsAgent) {
+      ws = new WebSocketClient(url, { agent: this.httpsAgent })
       this.logger.info(`Sending Websocket connection to: ${url} with httpsAgent`)
     } else {
       ws = new WebSocketClient(url)
