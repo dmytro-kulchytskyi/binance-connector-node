@@ -24,7 +24,6 @@ class WebsocketBase extends APIBase {
       ws = new WebSocketClient(url)
       this.logger.info(`Sending Websocket connection to: ${url}`)
     }
-    this.logger.info(`Sending Websocket connection to: ${url}`)
     this.wsConnection.ws = ws
     this.wsConnection.closeInitiated = false
 
