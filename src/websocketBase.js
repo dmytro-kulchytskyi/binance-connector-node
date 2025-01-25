@@ -16,7 +16,15 @@ class WebsocketBase extends APIBase {
   }
 
   initConnect (url) {
-    const ws = new WebSocketClient(url)
+    const httpsAgent = this.options.httpsAgent;
+    let ws;
+    if (httpsAgent) {
+      ws = new WebSocketClient(url, { agent: httpsAgent })
+      this.logger.info(`Sending Websocket connection to: ${url} with httpsAgent`)
+    } else {
+      ws = new WebSocketClient(url)
+      this.logger.info(`Sending Websocket connection to: ${url}`)
+    }
     this.logger.info(`Sending Websocket connection to: ${url}`)
     this.wsConnection.ws = ws
     this.wsConnection.closeInitiated = false
